@@ -120,8 +120,13 @@ namespace ClientProject
 
             if (!joinResult.success)//승인되지않을때
             {
-                lblAlert.Text = "닉네임과 비밀번호를 다시한번 확인해주세요";
+                //lblAlert.Text = "닉네임과 비밀번호를 다시한번 확인해주세요";
                 //사람다찼을때도 추가해야할듯
+
+                if (joinResult.reason == "인원초과")
+                    MessageBox.Show("인원이 초과되어 입장할 수 없습니다");
+                else if (joinResult.reason == "이름중복")
+                    MessageBox.Show("이미 사용중인 닉네임입니다");
             }
             else//승인되면 게임폼열음
             {
@@ -133,6 +138,7 @@ namespace ClientProject
                 {
                     it = true;
                     ongame.lblKeyword.Text = joinResult.first_answer;
+                    //술래 채팅창, 버튼 제거? or enabled=false
                 }
 
 

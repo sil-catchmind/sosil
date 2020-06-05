@@ -16,3 +16,9 @@ C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\CatchMindLibrary\obj\Debug\
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.csproj.CoreCompileInputs.cache
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.dll
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\bin\Debug\CatchMindLibrary.dll
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\bin\Debug\CatchMindLibrary.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.csprojAssemblyReference.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.csproj.CoreCompileInputs.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.dll
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.pdb

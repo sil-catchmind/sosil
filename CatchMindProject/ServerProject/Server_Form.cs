@@ -86,6 +86,7 @@ namespace ServerProject {
                             //connection=false전달
                             Message("이름 중복 발생. client연결 해제함");
                             join_result.success = false;
+                            join_result.reason = "이름중복";
                             Packet.Serialize(join_result).CopyTo(sendBuffer, 0);
                             Send();
                             m_stream.Close();
@@ -99,7 +100,8 @@ namespace ServerProject {
                         else {
                             //클라이언트에게 연결실패 전달
                             Message("4명 넘음. 클라이언트 연결 해제");
-                            join_result.success = false;                                //나중에 join_result 패킷에 사유추가해서 실패시 client에서 사유 출력
+                            join_result.success = false;
+                            join_result.reason = "인원초과";
                             Packet.Serialize(join_result).CopyTo(sendBuffer, 0);
                             Send();
                             m_stream.Close();

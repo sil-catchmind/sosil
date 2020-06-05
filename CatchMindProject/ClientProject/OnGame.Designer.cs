@@ -273,6 +273,7 @@
             this.txtAll.Location = new System.Drawing.Point(325, 470);
             this.txtAll.Multiline = true;
             this.txtAll.Name = "txtAll";
+            this.txtAll.ReadOnly = true;
             this.txtAll.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtAll.Size = new System.Drawing.Size(708, 176);
             this.txtAll.TabIndex = 6;

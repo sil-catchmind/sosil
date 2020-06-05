@@ -29,3 +29,16 @@ C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ServerProject\obj\Debug\Ser
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ServerProject\obj\Debug\ServerProject.csproj.CopyComplete
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ServerProject\obj\Debug\ServerProject.exe
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ServerProject\obj\Debug\ServerProject.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\bin\Debug\ServerProject.exe.config
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\bin\Debug\ServerProject.exe
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\bin\Debug\ServerProject.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\bin\Debug\CatchMindLibrary.dll
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\bin\Debug\CatchMindLibrary.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.csprojAssemblyReference.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.Server_Form.resources
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.Properties.Resources.resources
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.csproj.GenerateResource.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.csproj.CoreCompileInputs.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.csproj.CopyComplete
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.exe
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ServerProject\obj\Debug\ServerProject.pdb

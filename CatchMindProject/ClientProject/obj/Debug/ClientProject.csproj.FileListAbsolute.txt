@@ -34,3 +34,17 @@ C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ClientProject\obj\Debug\Cli
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.CopyComplete
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ClientProject\obj\Debug\ClientProject.exe
 C:\Users\YujinLee\Desktop\찐내거\CatchMindProject\ClientProject\obj\Debug\ClientProject.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\bin\Debug\ClientProject.exe.config
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\bin\Debug\ClientProject.exe
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\bin\Debug\ClientProject.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\bin\Debug\CatchMindLibrary.dll
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\bin\Debug\CatchMindLibrary.pdb
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.csprojAssemblyReference.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.formOnGame.resources
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.formStartGame.resources
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.Properties.Resources.resources
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.GenerateResource.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.CoreCompileInputs.cache
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.CopyComplete
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.exe
+C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.pdb

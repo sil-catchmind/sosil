@@ -158,7 +158,7 @@ namespace ClientProject
                         else if ((int)packet.Type == (int)PacketType.정답)
                         {
                             Correct_data correct = (Correct_data)Packet.Desserialize(readBuffer);
-                            Message(correct.nickname + "님이 정답을 맞추셨습니다.");
+                            Message(correct.nickname + "님이 정답을 맞추셨습니다."); //messagebox할라다 별로길래 냅둠
                             lblKeyword.Text = "";
                             //클라이언트가 내부적으로 걔점수라벨만 바꾸는게 낫나???아니면 서버가 플레이어정보배열 보내서 일괄 관리!?
                             for (int i = 0; i < arrClient.Count;i++)
@@ -181,7 +181,7 @@ namespace ClientProject
                         {
                             New_Player new_player  = (New_Player)Packet.Desserialize(readBuffer);
 
-                           
+                            Message(new_player.ligthInfo.nickname + "님이 입장하셨습니다");
                             //Player_light_Info light_info = new Player_light_Info();//가벼운정보들 저장용 
                           
                             arrClient.Add(new_player.ligthInfo);
@@ -285,7 +285,7 @@ namespace ClientProject
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
-                txtAll.AppendText(msg + "\n");
+                txtAll.AppendText(msg + "\r\n");
                 txtAll.Focus();
                 txtAll.ScrollToCaret();
                 txtSendline.Focus();

@@ -143,6 +143,7 @@ namespace CatchMindLibrary
         public List<Player_light_Info> arrClient;//조인리절트보낼때 클라이언트들의 가벼운정보 보냄
         public bool it; //술래인지 아닌지 true이면 자기가 술래임
         public string first_answer; //최초 정답
+        public string reason; //연결 실패한 이유
     }
 
     [Serializable]
