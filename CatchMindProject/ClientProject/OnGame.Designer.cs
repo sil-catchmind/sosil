@@ -29,21 +29,25 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblHistory1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblPlayer1Score = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPlayer1Name = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblHistory3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblPlayer3Score = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblPlayer3Name = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblHistory4 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblPlayer4Score = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblPlayer4Name = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblHistory2 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblPlayer2Score = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -56,25 +60,36 @@
             this.lblKeyword = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.groupBox1.Controls.Add(this.lblHistory1);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.lblPlayer1Score);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblPlayer1Name);
             this.groupBox1.Location = new System.Drawing.Point(38, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(261, 276);
+            this.groupBox1.Size = new System.Drawing.Size(261, 295);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // lblHistory1
+            // 
+            this.lblHistory1.AutoSize = true;
+            this.lblHistory1.Location = new System.Drawing.Point(102, 261);
+            this.lblHistory1.Name = "lblHistory1";
+            this.lblHistory1.Size = new System.Drawing.Size(45, 15);
+            this.lblHistory1.TabIndex = 4;
+            this.lblHistory1.Text = "label1";
             // 
             // pictureBox1
             // 
@@ -113,17 +128,27 @@
             this.lblPlayer1Name.Size = new System.Drawing.Size(0, 35);
             this.lblPlayer1Name.TabIndex = 0;
             // 
-            // groupBox2
+            // groupBox3
             // 
-            this.groupBox2.Controls.Add(this.pictureBox3);
-            this.groupBox2.Controls.Add(this.lblPlayer3Score);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.lblPlayer3Name);
-            this.groupBox2.Location = new System.Drawing.Point(38, 357);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(261, 276);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
+            this.groupBox3.Controls.Add(this.lblHistory3);
+            this.groupBox3.Controls.Add(this.pictureBox3);
+            this.groupBox3.Controls.Add(this.lblPlayer3Score);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.lblPlayer3Name);
+            this.groupBox3.Location = new System.Drawing.Point(38, 357);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(261, 301);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            // 
+            // lblHistory3
+            // 
+            this.lblHistory3.AutoSize = true;
+            this.lblHistory3.Location = new System.Drawing.Point(102, 274);
+            this.lblHistory3.Name = "lblHistory3";
+            this.lblHistory3.Size = new System.Drawing.Size(45, 15);
+            this.lblHistory3.TabIndex = 5;
+            this.lblHistory3.Text = "label4";
             // 
             // pictureBox3
             // 
@@ -162,17 +187,27 @@
             this.lblPlayer3Name.Size = new System.Drawing.Size(0, 35);
             this.lblPlayer3Name.TabIndex = 0;
             // 
-            // groupBox3
+            // groupBox4
             // 
-            this.groupBox3.Controls.Add(this.pictureBox4);
-            this.groupBox3.Controls.Add(this.lblPlayer4Score);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.lblPlayer4Name);
-            this.groupBox3.Location = new System.Drawing.Point(1068, 357);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(261, 276);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
+            this.groupBox4.Controls.Add(this.lblHistory4);
+            this.groupBox4.Controls.Add(this.pictureBox4);
+            this.groupBox4.Controls.Add(this.lblPlayer4Score);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.lblPlayer4Name);
+            this.groupBox4.Location = new System.Drawing.Point(1068, 357);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(261, 289);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            // 
+            // lblHistory4
+            // 
+            this.lblHistory4.AutoSize = true;
+            this.lblHistory4.Location = new System.Drawing.Point(107, 259);
+            this.lblHistory4.Name = "lblHistory4";
+            this.lblHistory4.Size = new System.Drawing.Size(45, 15);
+            this.lblHistory4.TabIndex = 7;
+            this.lblHistory4.Text = "label7";
             // 
             // pictureBox4
             // 
@@ -196,7 +231,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("맑은 고딕", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.Location = new System.Drawing.Point(44, 228);
+            this.label6.Location = new System.Drawing.Point(46, 215);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 25);
             this.label6.TabIndex = 1;
@@ -211,17 +246,27 @@
             this.lblPlayer4Name.Size = new System.Drawing.Size(0, 35);
             this.lblPlayer4Name.TabIndex = 0;
             // 
-            // groupBox4
+            // groupBox2
             // 
-            this.groupBox4.Controls.Add(this.pictureBox2);
-            this.groupBox4.Controls.Add(this.lblPlayer2Score);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.lblPlayer2Name);
-            this.groupBox4.Location = new System.Drawing.Point(1068, 29);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(261, 276);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
+            this.groupBox2.Controls.Add(this.lblHistory2);
+            this.groupBox2.Controls.Add(this.pictureBox2);
+            this.groupBox2.Controls.Add(this.lblPlayer2Score);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.lblPlayer2Name);
+            this.groupBox2.Location = new System.Drawing.Point(1068, 29);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(261, 309);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            // 
+            // lblHistory2
+            // 
+            this.lblHistory2.AutoSize = true;
+            this.lblHistory2.Location = new System.Drawing.Point(113, 280);
+            this.lblHistory2.Name = "lblHistory2";
+            this.lblHistory2.Size = new System.Drawing.Size(45, 15);
+            this.lblHistory2.TabIndex = 6;
+            this.lblHistory2.Text = "label5";
             // 
             // pictureBox2
             // 
@@ -284,6 +329,7 @@
             this.txtSendline.Name = "txtSendline";
             this.txtSendline.Size = new System.Drawing.Size(591, 25);
             this.txtSendline.TabIndex = 7;
+            this.txtSendline.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSendline_KeyDown);
             // 
             // btnSend
             // 
@@ -329,9 +375,9 @@
             this.Controls.Add(this.txtSendline);
             this.Controls.Add(this.txtAll);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "formOnGame";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formOnGame_FormClosing);
@@ -339,14 +385,14 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -360,16 +406,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPlayer1Name;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblPlayer3Score;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblPlayer3Name;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblPlayer4Score;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblPlayer4Name;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblPlayer2Score;
         private System.Windows.Forms.Label label9;
@@ -381,5 +427,9 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.PictureBox pictureBox3;
         public System.Windows.Forms.Label lblKeyword;
+        private System.Windows.Forms.Label lblHistory1;
+        private System.Windows.Forms.Label lblHistory3;
+        private System.Windows.Forms.Label lblHistory4;
+        private System.Windows.Forms.Label lblHistory2;
     }
 }

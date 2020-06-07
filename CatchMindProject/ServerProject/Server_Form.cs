@@ -24,6 +24,7 @@ namespace ServerProject {
         NetworkStream m_stream;
 
         //필요한 배열들
+        List<Member_Info> arrMember = new List<Member_Info>();
         List<Player_Info> arrClient = new List<Player_Info>();
         List<Player_light_Info> arrClientlight = new List<Player_light_Info>();
         List<Thread> threadList = new List<Thread>();
@@ -38,6 +39,9 @@ namespace ServerProject {
 
         byte[] readBuffer = new byte[1024 * 4];
         byte[] sendBuffer = new byte[1024 * 4];
+
+        string winner_name = "";//게임종료후 승자 정보용 변수
+        int winner_score = 0;
 
 
         public Server_Form() {
@@ -74,7 +78,7 @@ namespace ServerProject {
                         //Packet packet = (Packet)Packet.Desserialize(readBuffer);
 
                         Join_data join_data = (Join_data)Packet.Desserialize(readBuffer);
-                        Message(join_data.nickname + "님이 입장했습니다.");
+                        Message(join_data.nickname + "님이 로그인 시도");//입장했다는 메세지보다 더 명확한의미로 시도로 바꿈
 
                         Join_result join_result = new Join_result();
                         join_result.Type = (int)PacketType.연결;
@@ -110,24 +114,68 @@ namespace ServerProject {
                             continue;
                         }
 
+                        Message(join_data.nickname + "님 로그인 성공");//위의 로그인 조건 확인 뒤 로그인 성공 띄움
+
                         Player_Info info = new Player_Info(); //Client_Info 멤버변수 초기화해서 배열에 넣는 과정
                         info.client = hClient;
                         if (count_client == 1) info.drawable = true; //최초 client에게 그리기 권한 - 클라이언트들이 중간에 나가지 않는다는 가정하에
                         else info.drawable = false;
-                        info.score = 0;
-                        info.nickname = join_data.nickname;
-                        info.img_num = join_data.img_num;
-                        info.pwd = join_data.pwd;
 
-                        arrClient.Add(info);
+                        bool is_exist=false;
 
 
-                        Player_light_Info light_info = new Player_light_Info();//가벼운정보들 저장용 
-                        light_info.score = 0;
+                        Player_light_Info light_info = new Player_light_Info();//가벼운정보들 클라이언트에 전달용
+
+
+                        for (int i =0; i < arrMember.Count; i++)
+                        {
+                            if(join_data.nickname == arrMember[i].nickname )//기존 존재하는 닉네임인 경우 저장되어있는 점수 불러옴
+                            {
+                                arrMember[i].img_num = join_data.img_num;//로그인할때 설정한 이미지 정보 회원정보에 저장
+                                
+                                
+                                info.nickname = arrMember[i].nickname;
+                                info.img_num = arrMember[i].img_num;
+                                info.score = arrMember[i].score;//게임한판진행 중에 중간에 나갔다가 들어왔을때 점수 유지 
+
+                                
+                                arrClient.Add(info);//현재 플레이중 플레이어들 배열에 추가
+
+                                is_exist = true;
+
+                                light_info.score = arrMember[i].score;//판이 끝나기 전에 저장되어있던 점수
+                                light_info.match = arrMember[i].match;
+                                light_info.win = arrMember[i].win;
+                                light_info.lose = arrMember[i].lose;
+                                
+                            }
+                        }
+
+                        if (!is_exist)//기존 존재하는 닉네임이 아닌경우 
+                        {
+                            Member_Info minfo = new Member_Info();
+                            minfo.nickname = join_data.nickname;         
+                            arrMember.Add(minfo);//회원정보리스트에 추가
+
+                            info.nickname =join_data.nickname;
+                            info.img_num = join_data.img_num;
+                            arrClient.Add(info);//플레이어리스트에 추가
+
+                            light_info.score = 0;//처음들어오는거면 점수 0
+                            light_info.match = 0;
+                            light_info.win = 0;
+                            light_info.lose = 0;
+
+
+                        }
+
+ 
                         light_info.nickname = join_data.nickname;
                         light_info.img_num = join_data.img_num;
 
+
                         arrClientlight.Add(light_info);
+
 
                         //연결문제없음. 성공 전달///////////////////////연결성공 전달할때 현재 플레이어 상태도 보내야할듯. 사진이랑 닉네임정보
                         join_result.success = true;
@@ -155,6 +203,11 @@ namespace ServerProject {
 
         void Client_handler() {
             Thread t = new Thread(new ThreadStart(receiveData));
+            for(int i =0;i<arrClient.Count;i++)
+            {
+                if (arrClient[i].client == hClient)
+                    arrClient[i].thread = t;//각 클라이언트랑 연결할때 실행되는 쓰레드를 클라이언트 정보에 저장 쓰레드 종료 회원나갈때 굳이 안해도되면 뺴기
+            }
             t.Start();
             threadList.Add(t);
         }
@@ -166,7 +219,7 @@ namespace ServerProject {
             return true;
         }
 
-        Chat_data chat_data;
+        Chat_data chat_data;//이거 밖에있어야함?
 
         void receiveData() {
             TcpClient client = hClient;
@@ -201,17 +254,34 @@ namespace ServerProject {
                             correct_data.nickname = getName(client); //맞춘 애 이름 담음 - client에서 **님이 정답을 맞췄습니다. 라고 출력
                             sendToAll(correct_data, null); //서버가 보낼 땐 null로... need check 
 
+                            string correct_player="";
+
                             for (int i = 0; i < arrClient.Count; i++) {
                                 if (client == arrClient[i].client) {
                                     arrClient[i].drawable = true;
                                     arrClient[i].score++;
+                                    arrClientlight[i].score++;//중간에 나갔다 들어온사람한테 올바른 경기상태 전하려면 light정보 갱신
+                                    correct_player = arrClient[i].nickname;//맞춘사람 이름
                                     if (arrClient[i].score == 3) { endGame(); break; }
                                 }
                                 else arrClient[i].drawable = false;
+
+                            }
+                            
+
+                            
+                            foreach(Member_Info member in arrMember)
+                            {
+                                if(member.nickname == correct_player)
+                                {
+                                    member.score++;
+                                }
+
                             }
 
+
                             count_game++; //몇 판 했는지 처리
-                            if (count_game == 6) endGame(); //5판끝났으면 endgame호출
+                            if (count_game == 5) endGame(); //5판끝났으면 endgame호출
 
                             getAnswer(); //answer갱신
 
@@ -222,14 +292,35 @@ namespace ServerProject {
                             Packet.Serialize(ans).CopyTo(sendBuffer, 0);
                             stream.Write(sendBuffer, 0, sendBuffer.Length);
                             stream.Flush();
-                            Array.Clear(sendBuffer, 0, 1024 * 4);
+                            Array.Clear(sendBuffer, 0, 1024 * 4);//이건왜 sendToAll로 안함?
                         }
                     }
                     else if ((int)packet.Type == (int)PacketType.그림) {
 
                     }
-                    else if ((int)packet.Type == (int)PacketType.나가기) { //나가기 패킷 받았으면 처리 - 일단 이러한 경우 없다고 가정
-                                                                        //arrclient에서 삭제하고 얘가 나갔다고 클라이언트들에게 알린다
+                    else if ((int)packet.Type == (int)PacketType.나가기) {
+                        //나가기 패킷 받았으면 처리 - 일단 이러한 경우 없다고 가정
+                        //arrclient에서 삭제하고 얘가 나갔다고 클라이언트들에게 알린다
+
+                        Exit_data exit = (Exit_data)Packet.Desserialize(readBuffer);
+                        Player_Info exit_member = new Player_Info();
+                        exit_member.nickname = exit.nickname;
+
+                        Message(exit_member.nickname + "님이 나갔습니다. ");
+                        count_client--;//플레이어수 감소
+                        sendToAll(exit, client);
+                        int exit_index = arrClient.IndexOf(exit_member);//객체넣어서비교말고 string으로만 indexOf 쓰고 싶었는데 잘안됨
+                        arrClient.RemoveAt(exit_index);
+                        arrClientlight.RemoveAt(exit_index);
+
+                       
+
+
+                       // arrClient[exit_index].thread.Abort();//해야할까..?
+                        
+
+
+
                     }
 
                 }
@@ -259,11 +350,15 @@ namespace ServerProject {
 
         void endGame() //게임 끝 - 강의자료의 serverstop 함수역할. 모두정리
         {
+
+            GameResult();
+
             try {
-                Chat_data chat = new Chat_data();
-                chat.data = "게임이 종료됩니다."; //승리자도 위에서 계산해서 출력하는 거 추가필요
-                chat.nickname = "server";
-                sendToAll(chat, null);
+                
+                End_Packet end = new End_Packet();
+                end.winner_name = winner_name;
+                end.winner_score = winner_score;
+                sendToAll(end, null);
 
                 for (int i = 0; i < threadList.Count; i++) {
                     if (threadList[i].IsAlive) threadList[i].Abort();
@@ -275,6 +370,40 @@ namespace ServerProject {
                 Message("error at endGame");
             }
         }
+
+        void GameResult()
+        {
+            
+            foreach(Player_Info player in arrClient)//이번판 승자 구하기
+            {
+                if(player.score>winner_score)
+                {
+                    winner_name = player.nickname;
+                    winner_score = player.score;
+                }
+
+            }
+
+            foreach(Member_Info member in arrMember)//전적 저장,score정보는 0으로 초기화
+            {
+                member.score = 0;
+                member.match += 1;
+
+                if (member.nickname == winner_name)
+                {
+                    member.win += 1;
+                  
+                }
+                else
+                { member.lose += 1;
+               
+                }
+            }
+            
+
+        }
+
+
 
         void sendToAll(Packet packet, TcpClient client)//인자로 받은 패킷을 모든클라이언트에게 전송
         {

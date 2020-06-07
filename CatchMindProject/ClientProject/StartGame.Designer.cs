@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNickname = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -61,21 +59,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Catch Mind";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(181, 206);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "비밀번호 ";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.Location = new System.Drawing.Point(181, 158);
+            this.label3.Location = new System.Drawing.Point(184, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 20);
             this.label3.TabIndex = 2;
@@ -83,7 +71,7 @@
             // 
             // txtNickname
             // 
-            this.txtNickname.Location = new System.Drawing.Point(264, 153);
+            this.txtNickname.Location = new System.Drawing.Point(296, 182);
             this.txtNickname.Name = "txtNickname";
             this.txtNickname.Size = new System.Drawing.Size(177, 25);
             this.txtNickname.TabIndex = 3;
@@ -98,13 +86,6 @@
             this.btnStart.Text = "시작하기";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(264, 201);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(177, 25);
-            this.txtPassword.TabIndex = 5;
             // 
             // groupBox1
             // 
@@ -212,9 +193,8 @@
             this.lblAlert.AutoSize = true;
             this.lblAlert.Location = new System.Drawing.Point(293, 242);
             this.lblAlert.Name = "lblAlert";
-            this.lblAlert.Size = new System.Drawing.Size(45, 15);
+            this.lblAlert.Size = new System.Drawing.Size(0, 15);
             this.lblAlert.TabIndex = 7;
-            this.lblAlert.Text = "label4";
             // 
             // formStartGame
             // 
@@ -223,11 +203,9 @@
             this.ClientSize = new System.Drawing.Size(633, 584);
             this.Controls.Add(this.lblAlert);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.txtNickname);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "formStartGame";
             this.Text = "StartGame";
@@ -246,11 +224,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNickname;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;

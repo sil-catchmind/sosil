@@ -48,3 +48,17 @@ C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\De
 C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.CopyComplete
 C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.exe
 C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\ClientProject\obj\Debug\ClientProject.pdb
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\bin\Debug\ClientProject.exe.config
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\bin\Debug\ClientProject.exe
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\bin\Debug\ClientProject.pdb
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\bin\Debug\CatchMindLibrary.dll
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\bin\Debug\CatchMindLibrary.pdb
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.csprojAssemblyReference.cache
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.formOnGame.resources
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.formStartGame.resources
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.Properties.Resources.resources
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.GenerateResource.cache
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.CoreCompileInputs.cache
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.csproj.CopyComplete
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.exe
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\ClientProject\obj\Debug\ClientProject.pdb

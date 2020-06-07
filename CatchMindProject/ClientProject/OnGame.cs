@@ -42,10 +42,12 @@ namespace ClientProject
         Thread m_ThReader;
 
 
-        string my_nickname;
+       
 
-        Player_Info me = new Player_Info();
-    
+        Player_light_Info me = new Player_light_Info();
+        string my_nickname;
+        int my_place = 0;
+
 
 
         public AppDomainInitializer m_initializeClass;//없애도댈듯
@@ -61,6 +63,9 @@ namespace ClientProject
         public PictureBox[] pic = new PictureBox[4];
         public Label[] lblName = new Label[4];
         public Label[] lblScore = new Label[4];
+        public Label[] lblHistory = new Label[4];
+        public GroupBox[] gbProfile = new GroupBox[4];
+
 
         private void formOnGame_Load(object sender, EventArgs e)
         {//스트림 어케써야되나 부모스트림 그대로쓰나
@@ -73,7 +78,15 @@ namespace ClientProject
             me.nickname = formstart.my_nickname;
 
             arrClient = formstart.arrClient;//플레이어들 정보 얻어옴
-            
+
+           
+
+           
+
+           
+
+            Message("게임에 참여하였습니다");
+
             pic[0] = pictureBox1;
             pic[1] = pictureBox2;
             pic[2] = pictureBox3;
@@ -91,27 +104,18 @@ namespace ClientProject
             lblScore[2] = lblPlayer3Score;
             lblScore[3] = lblPlayer4Score;
 
+            lblHistory[0] = lblHistory1;
+            lblHistory[1] = lblHistory2;
+            lblHistory[2] = lblHistory3;
+            lblHistory[3] = lblHistory4;
 
+            gbProfile[0] = groupBox1;
+            gbProfile[1] = groupBox2;
+            gbProfile[2] = groupBox3;
+            gbProfile[3] = groupBox4;
 
-            for (int i =0;i<arrClient.Count;i++)//첫화면 로딩
-            {
-                // 플레이어들 이미지 배치
-                if (arrClient[i].img_num == 1)
-                { pic[i].Image = Properties.Resources.무지; }//pic배열로 연결해서 이용해도 사진설정이 잘될까? pictureBox1으로 안하고?
-                else if (arrClient[i].img_num == 2)
-                { pic[i].Image = Properties.Resources.네오; }
-                else if (arrClient[i].img_num == 3)
-                { pic[i].Image = Properties.Resources.어피치; }
-                else if (arrClient[i].img_num == 4)
-                { pic[i].Image = Properties.Resources.라이언; }
+            LoadScreen();
 
-                //이름설정
-                lblName[i].Text = arrClient[i].nickname;
-                //점수설정
-                lblScore[i].Text = Convert.ToString(arrClient[i].score);
-
-
-            }
 
 
             m_ThReader = new Thread(new ThreadStart(Receive)); //접속 받아들이는 thread 시작
@@ -153,69 +157,73 @@ namespace ClientProject
                         }
                         else if ((int)packet.Type == (int)PacketType.그림)
                         {
-                           //그림일 때 추가
+                            //그림일 때 추가
                         }
                         else if ((int)packet.Type == (int)PacketType.정답)
                         {
                             Correct_data correct = (Correct_data)Packet.Desserialize(readBuffer);
-                            Message(correct.nickname + "님이 정답을 맞추셨습니다."); //messagebox할라다 별로길래 냅둠
+                            if (correct.nickname == me.nickname)
+                            {
+                                Message("정답입니다");//본인이 맞췄을 때는 정답입니다로 출력
+                            }
+                            else
+                            {
+                                Message(correct.nickname + "님이 정답을 맞추셨습니다."); //messagebox할라다 별로길래 냅둠
+                                Message(correct.nickname + "님이 그리는 중입니다");
+                            }
                             lblKeyword.Text = "";
                             //클라이언트가 내부적으로 걔점수라벨만 바꾸는게 낫나???아니면 서버가 플레이어정보배열 보내서 일괄 관리!?
-                            for (int i = 0; i < arrClient.Count;i++)
+                            for (int i = 0; i < arrClient.Count; i++)
+                            {
+                                if (arrClient[i].nickname == correct.nickname)
                                 {
-                                    if (arrClient[i].nickname == correct.nickname)
-                                    {
-                                        arrClient[i].score += 1;
-                                        lblScore[i].Text = arrClient[i].score.ToString();
-                                    }
+                                    arrClient[i].score += 1;
+                                    lblScore[i].Text = arrClient[i].score.ToString();
                                 }
+                            }
                         }
                         else if ((int)packet.Type == (int)PacketType.다음정답)
                         {
                             Answer ans = (Answer)Packet.Desserialize(readBuffer);
                             Message("제시어는 " + ans.answer + "입니다");
-                            lblKeyword.Text=ans.answer;
-                            
+                            Message("제시어를 그려주세요");
+                            lblKeyword.Text = ans.answer;//퇴장 재참가할때 이거띄 우는거에는 상관없는지 고민
+
                         }
+
                         else if ((int)packet.Type == (int)PacketType.참가)
                         {
-                            New_Player new_player  = (New_Player)Packet.Desserialize(readBuffer);
+                            New_Player new_player = (New_Player)Packet.Desserialize(readBuffer);
 
                             Message(new_player.ligthInfo.nickname + "님이 입장하셨습니다");
                             //Player_light_Info light_info = new Player_light_Info();//가벼운정보들 저장용 
-                          
+
                             arrClient.Add(new_player.ligthInfo);
+                   
 
-                            for(int i=0; i<4; i++)
-                            {
-                                if (lblName[i].Text== "")
-                                {
-                                    lblName[i].Text = arrClient[i].nickname;
-                                    lblScore[i].Text = arrClient[i].score.ToString();
-
-                                   if (arrClient[i].img_num == 1)
-                                    { pic[i].Image = Properties.Resources.무지; }//pic배열로 연결해서 이용해도 사진설정이 잘될까? pictureBox1으로 안하고?
-                                    else if (arrClient[i].img_num == 2)
-                                    { pic[i].Image = Properties.Resources.네오; }
-                                    else if (arrClient[i].img_num == 3)
-                                    { pic[i].Image = Properties.Resources.어피치; }
-                                    else if (arrClient[i].img_num == 4)
-                                    { pic[i].Image = Properties.Resources.라이언; }
-                                    break;
-
-
-                                }
-                            }
-
-
+                            LoadScreen();
                         }
 
-                        else if ((int)packet.Type == (int)PacketType.게임종료)//서버가 Chat으로 보냈떤데?
+                        else if ((int)packet.Type == (int)PacketType.게임종료)
                         {
-                           
+                            End_Packet end = (End_Packet)Packet.Desserialize(readBuffer);
+                            Message(end.winner_name + "님이 " + end.winner_score + "로 승리하셨습니다");
+
+
                         }
 
+                        else if ((int)packet.Type == (int)PacketType.나가기)
+                        {
+                            Exit_data exit = (Exit_data)Packet.Desserialize(readBuffer);
+                            Player_light_Info exit_member = new Player_light_Info();
+                            exit_member.nickname = exit.nickname;
+                            Message(exit_member.nickname + "님이 나갔습니다");
+                            arrClient.Remove(exit_member);
+                            LoadScreen();
 
+
+                        }
+                       
                     }
                 }
             }
@@ -224,12 +232,83 @@ namespace ClientProject
                 Message("client : error at Receive");
             }
 
+            
+        }
+
+        void LoadScreen()//화면 로딩
+        {
+            my_place = arrClient.IndexOf(me);
+
+            for (int i =0;i<4;i++)
+            { 
+
+            pic[i].Visible = false;
+            lblName[i].Text = "";
+            //점수설정
+            lblScore[i].Text = "";
+            lblHistory[i].Text = "";
+                gbProfile[i].BackColor = Color.White;
+            }
+
+
+            for (int i = 0; i < arrClient.Count; i++)
+            {
+                if(i==my_place)
+                {
+                    gbProfile[i].BackColor = Color.LemonChiffon;
+
+                }
+
+                   // 플레이어들 이미지 배치     
+                    if (arrClient[i].img_num == 1)
+                    { pic[i].Image = Properties.Resources.무지; }
+                    else if (arrClient[i].img_num == 2)
+                    { pic[i].Image = Properties.Resources.네오; }
+                    else if (arrClient[i].img_num == 3)
+                    { pic[i].Image = Properties.Resources.어피치; }
+                    else if (arrClient[i].img_num == 4)
+                    { pic[i].Image = Properties.Resources.라이언; }
+
+                
+                    //이름설정
+                    lblName[i].Text = arrClient[i].nickname;
+                    //점수설정
+                    lblScore[i].Text = Convert.ToString(arrClient[i].score);
+                    //그림 보이게
+                    string match = Convert.ToString(arrClient[i].match);
+                    string win= Convert.ToString(arrClient[i].win);
+                    string lose = Convert.ToString(arrClient[i].lose);
+                    //전적 설정
+                    lblHistory[i].Text = (match + "전 " + win + "승 " + lose + "패");
+
+                    pic[i].Visible = true;
+
+
+
+                
+             
+            }
+
+
+
+
 
 
 
         }
 
         private void btnSend_Click(object sender, EventArgs e)
+        {
+            Send_Chat();
+
+        }
+        private void txtSendline_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Send_Chat();
+        }
+
+        void Send_Chat()
         {
             Message(me.nickname + "(ME) : " + txtSendline.Text);
             try
@@ -253,9 +332,8 @@ namespace ClientProject
                 Message("채팅데이터 전송 실패");
             }
 
-
         }
-        
+
 
         void Send()
         {
@@ -275,12 +353,12 @@ namespace ClientProject
             exit.nickname = me.nickname;
             Packet.Serialize(exit).CopyTo(this.sendBuffer, 0);//exit 패킷 보내기
             Send();
+
+
+
          
         }
-
-       
         
-
         public void Message(string msg)
         {
             this.Invoke(new MethodInvoker(delegate ()
@@ -299,9 +377,10 @@ namespace ClientProject
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //Disconnect();추가해야댐
+            Disconnect();
             //스트림 닫기, 쓰레드종료 
-            Application.Exit();//종료 함수 적절한지 확인더 필요
+           Application.Exit();//종료 함수 적절한지 확인더 필요
+            
            
         }
 
@@ -309,5 +388,7 @@ namespace ClientProject
         {
             Application.Exit(); 
         }
+
+        
     }
 }

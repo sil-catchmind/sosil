@@ -34,10 +34,7 @@ namespace ClientProject
         public string my_nickname;
         public List<Player_light_Info> arrClient = new List<Player_light_Info>();
 
-
-        public AppDomainInitializer m_initializeClass;//없애도댈듯
-        public Join_data m_loginClass;//없애도될듯
-
+        
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (txtNickname.Text == "")
@@ -46,11 +43,7 @@ namespace ClientProject
                 return;
             }
 
-           else if (txtPassword.Text == "")
-            {
-                lblAlert.Text = "비밀번호를 입력하세요.";
-                return;
-            }
+          
             else if ((!rdoImage1.Checked)&&(!rdoImage2.Checked) && (!rdoImage3.Checked) && (!rdoImage4.Checked))
             {
                 lblAlert.Text = "이미지를 선택하세요.";
@@ -87,7 +80,7 @@ namespace ClientProject
             Join_data join = new Join_data();
             join.Type = (int)PacketType.연결;
             join.nickname = txtNickname.Text;
-            join.pwd = txtPassword.Text;
+            
 
             //이미지 번호 설정
             if (rdoImage1.Checked == true)

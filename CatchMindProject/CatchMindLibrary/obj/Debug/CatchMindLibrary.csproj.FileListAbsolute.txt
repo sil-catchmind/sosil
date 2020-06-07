@@ -22,3 +22,9 @@ C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj
 C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.csproj.CoreCompileInputs.cache
 C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.dll
 C:\Users\박선영\Desktop\응소실\sosil\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.pdb
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\CatchMindLibrary\bin\Debug\CatchMindLibrary.dll
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\CatchMindLibrary\bin\Debug\CatchMindLibrary.pdb
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.csprojAssemblyReference.cache
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.csproj.CoreCompileInputs.cache
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.dll
+C:\Users\YujinLee\Desktop\깃허브에서pull한거\CatchMindProject\CatchMindLibrary\obj\Debug\CatchMindLibrary.pdb
