@@ -256,50 +256,57 @@ namespace ServerProject {
 
                             string correct_player="";
 
+                            bool end=false;
                             for (int i = 0; i < arrClient.Count; i++) {
                                 if (client == arrClient[i].client) {
                                     arrClient[i].drawable = true;
                                     arrClient[i].score++;
                                     arrClientlight[i].score++;//중간에 나갔다 들어온사람한테 올바른 경기상태 전하려면 light정보 갱신
                                     correct_player = arrClient[i].nickname;//맞춘사람 이름
-                                    if (arrClient[i].score == 3) { endGame(); break; }
+                                    if (arrClient[i].score == 3) end = true;
                                 }
                                 else arrClient[i].drawable = false;
-
                             }
-                            
-
-                            
                             foreach(Member_Info member in arrMember)
                             {
                                 if(member.nickname == correct_player)
                                 {
                                     member.score++;
                                 }
-
                             }
+                            if (end) { 
+                                endGame();
+                                Answer ans = new Answer();
+                                ans.Type = (int)PacketType.다음정답;
+                                ans.answer = answer;
+                                Packet.Serialize(ans).CopyTo(sendBuffer, 0);
+                                stream.Write(sendBuffer, 0, sendBuffer.Length);
+                                stream.Flush();
+                                Array.Clear(sendBuffer, 0, 1024 * 4);
+                            }
+                            else {
+                                count_game++; //몇 판 했는지 처리
+                                if (count_game == 5) endGame(); //5판끝났으면 endgame호출
+                                else {
+                                    getAnswer(); //answer갱신
 
-
-                            count_game++; //몇 판 했는지 처리
-                            if (count_game == 5) endGame(); //5판끝났으면 endgame호출
-
-                            getAnswer(); //answer갱신
-
-                            //정답자에게만 새로운 정답 알려줘야됨
-                            Answer ans = new Answer();
-                            ans.Type = (int)PacketType.다음정답;
-                            ans.answer = answer;
-                            Packet.Serialize(ans).CopyTo(sendBuffer, 0);
-                            stream.Write(sendBuffer, 0, sendBuffer.Length);
-                            stream.Flush();
-                            Array.Clear(sendBuffer, 0, 1024 * 4);//이건왜 sendToAll로 안함?
+                                    //정답자에게만 새로운 정답 알려줘야됨
+                                    Answer ans = new Answer();
+                                    ans.Type = (int)PacketType.다음정답;
+                                    ans.answer = answer;
+                                    Packet.Serialize(ans).CopyTo(sendBuffer, 0);
+                                    stream.Write(sendBuffer, 0, sendBuffer.Length);
+                                    stream.Flush();
+                                    Array.Clear(sendBuffer, 0, 1024 * 4);//이건왜 sendToAll로 안함?
+                                }
+                            }
                         }
                     }
                     else if ((int)packet.Type == (int)PacketType.그림) {
 
                     }
                     else if ((int)packet.Type == (int)PacketType.나가기) {
-                        //나가기 패킷 받았으면 처리 - 일단 이러한 경우 없다고 가정
+                        //나가기 패킷 받았으면 처리
                         //arrclient에서 삭제하고 얘가 나갔다고 클라이언트들에게 알린다
 
                         Exit_data exit = (Exit_data)Packet.Desserialize(readBuffer);
@@ -312,13 +319,6 @@ namespace ServerProject {
                         int exit_index = arrClient.IndexOf(exit_member);//객체넣어서비교말고 string으로만 indexOf 쓰고 싶었는데 잘안됨
                         arrClient.RemoveAt(exit_index);
                         arrClientlight.RemoveAt(exit_index);
-
-                       
-
-
-                       // arrClient[exit_index].thread.Abort();//해야할까..?
-                        
-
 
 
                     }
@@ -338,28 +338,23 @@ namespace ServerProject {
         }
 
 
-        /*void startGame()//게임 시작
-         {
-             //5판이하이고 맞추지 못한 동안 while
-
-             //함수로 따로 처리할 게 아니라 다른 함수 곳곳에서 변수로 제어해야할듯..?
-             //=>receive client에서 제어해야하나? count == 5이면 게임 끝내기
-             //receive client아니고 count증가시킬때마다 검사해서 5이면 endGame호출 - 클라이언트에 게임끝났다고 알리고, 클라이언트들, 스트림들 싹다 정리
-             //=>receive client알아서 종료될듯 m_bStop통해서..
-         }*/
-
         void endGame() //게임 끝 - 강의자료의 serverstop 함수역할. 모두정리
         {
-
+            //client한테 결과 보내고
             GameResult();
+            End_Packet end = new End_Packet();
+            end.Type = (int)PacketType.게임종료;
+            end.winner_name = winner_name;
+            end.winner_score = winner_score;
+            sendToAll(end, null);
+            
+            //새 게임 준비
+            count_game = 0;
+            getAnswer();
+        }
 
+        void endServer() { //게임 아예 종료 - 언제? - 그냥 서버 창 닫을때만?
             try {
-                
-                End_Packet end = new End_Packet();
-                end.winner_name = winner_name;
-                end.winner_score = winner_score;
-                sendToAll(end, null);
-
                 for (int i = 0; i < threadList.Count; i++) {
                     if (threadList[i].IsAlive) threadList[i].Abort();
                 }
@@ -371,6 +366,7 @@ namespace ServerProject {
             }
         }
 
+
         void GameResult()
         {
             
@@ -381,7 +377,7 @@ namespace ServerProject {
                     winner_name = player.nickname;
                     winner_score = player.score;
                 }
-
+                player.score = 0; //초기화도 같이 해줌 - 클라이언트엔 반영이 안되는듯
             }
 
             foreach(Member_Info member in arrMember)//전적 저장,score정보는 0으로 초기화
@@ -395,8 +391,8 @@ namespace ServerProject {
                   
                 }
                 else
-                { member.lose += 1;
-               
+                { 
+                    member.lose += 1;
                 }
             }
             

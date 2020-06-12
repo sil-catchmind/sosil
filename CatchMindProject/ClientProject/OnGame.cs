@@ -165,11 +165,13 @@ namespace ClientProject
                             if (correct.nickname == me.nickname)
                             {
                                 Message("정답입니다");//본인이 맞췄을 때는 정답입니다로 출력
+                                Hide(true);
                             }
                             else
                             {
                                 Message(correct.nickname + "님이 정답을 맞추셨습니다."); //messagebox할라다 별로길래 냅둠
                                 Message(correct.nickname + "님이 그리는 중입니다");
+                                Hide(false);
                             }
                             lblKeyword.Text = "";
                             //클라이언트가 내부적으로 걔점수라벨만 바꾸는게 낫나???아니면 서버가 플레이어정보배열 보내서 일괄 관리!?
@@ -207,8 +209,8 @@ namespace ClientProject
                         else if ((int)packet.Type == (int)PacketType.게임종료)
                         {
                             End_Packet end = (End_Packet)Packet.Desserialize(readBuffer);
-                            Message(end.winner_name + "님이 " + end.winner_score + "로 승리하셨습니다");
-
+                            Message("\n"+end.winner_name + "님이 " + end.winner_score + "점으로 승리하셨습니다"+"\n");
+                            //뭔가 너무 눈에 안띄어서 일단 이렇게..
 
                         }
 
@@ -220,7 +222,6 @@ namespace ClientProject
                             Message(exit_member.nickname + "님이 나갔습니다");
                             arrClient.Remove(exit_member);
                             LoadScreen();
-
 
                         }
                        
@@ -352,11 +353,7 @@ namespace ClientProject
             exit.Type = (int)PacketType.나가기;
             exit.nickname = me.nickname;
             Packet.Serialize(exit).CopyTo(this.sendBuffer, 0);//exit 패킷 보내기
-            Send();
-
-
-
-         
+            Send();         
         }
         
         public void Message(string msg)
@@ -367,6 +364,20 @@ namespace ClientProject
                 txtAll.Focus();
                 txtAll.ScrollToCaret();
                 txtSendline.Focus();
+            }));
+        }
+
+        public void Hide(bool it)
+        {
+            this.Invoke(new MethodInvoker(delegate () {
+                if (it) {
+                    txtSendline.Visible = false;
+                    btnSend.Visible = false;
+                }
+                else {
+                    txtSendline.Visible = true;
+                    btnSend.Visible = true;
+                }
             }));
         }
 

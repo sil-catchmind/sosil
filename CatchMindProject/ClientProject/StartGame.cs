@@ -132,6 +132,10 @@ namespace ClientProject
                     it = true;
                     ongame.lblKeyword.Text = joinResult.first_answer;
                     //술래 채팅창, 버튼 제거? or enabled=false
+                    this.Invoke(new MethodInvoker(delegate () {
+                            ongame.txtSendline.Visible = false;
+                            ongame.btnSend.Visible = false;
+                    }));
                 }
 
 

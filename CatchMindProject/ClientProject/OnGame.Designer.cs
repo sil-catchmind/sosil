@@ -422,8 +422,6 @@
         private System.Windows.Forms.Label lblPlayer2Name;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtAll;
-        private System.Windows.Forms.TextBox txtSendline;
-        private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.PictureBox pictureBox3;
         public System.Windows.Forms.Label lblKeyword;
@@ -431,5 +429,7 @@
         private System.Windows.Forms.Label lblHistory3;
         private System.Windows.Forms.Label lblHistory4;
         private System.Windows.Forms.Label lblHistory2;
+        public System.Windows.Forms.TextBox txtSendline;
+        public System.Windows.Forms.Button btnSend;
     }
 }
